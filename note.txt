@@ -1,4 +1,4 @@
-Hello, I'm SD4499 - Tran Van Tien Dung
+SD4499 - Tran Van Tien Dung
 Practical DevOps for Devs – Assignment
 # All these token will be INVALID!!!
 ### I. Setting up a CI/CD Pipeline and deploying applications on AWS EKS
@@ -60,7 +60,7 @@ kubectl create namespace grafana
 
 helm repo add grafana https://grafana.github.io/helm-charts
 
-helm install grafana grafana/grafana --namespace grafana --set persistence.storageClassName="gp2" --set persistence.enabled=true --set adminPassword='Pa55w0rd' --values ./deploy/grafana/grafana.yaml --set service.type=LoadBalancer
+helm install grafana grafana/grafana --namespace grafana --set persistence.storageClassName="gp2" --set persistence.enabled=true --set adminPassword='Pa88w0rd' --values ./deploy/grafana/grafana.yaml --set service.type=LoadBalancer
 
 kubectl get all --namespace=grafana
 
@@ -86,17 +86,10 @@ kubectl port-forward svc/argocd-server -n argocd 8080:443
 kubectl create namespace app-argocd
 
 -- Create project mongo, backend and frontend
--- Create app mongo, backend and frontend
-Application name: mongo
-Project: mongo
+-- Create app frontend
+Application name: frontend
+Project: frontend
 Repository URL: https://github.com/TranVanTienDung/sd4499_msa.git
-Path: ./deploy/mongo
+Path: ./deploy/frontend
 Cluster: https://kubernetes.default.svc (this is the same cluster where ArgoCD is installed)
 Namespace: app-argocd
-...
-
-kubectl get pods -n app-argocd
-
-kubectl get services -n app-argocd
-
-kubectl port-forward svc/frontend 8888:3000 -n app-argocd
